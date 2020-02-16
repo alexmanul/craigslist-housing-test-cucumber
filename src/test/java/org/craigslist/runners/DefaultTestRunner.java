@@ -13,5 +13,6 @@ import org.junit.runner.RunWith;
         glue = "steps.definitions",
         tags = "@all"
 )
+
 public class DefaultTestRunner extends AbstractTestRunner {
 }

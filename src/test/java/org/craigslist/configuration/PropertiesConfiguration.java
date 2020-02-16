@@ -14,6 +14,8 @@ public class PropertiesConfiguration {
 
     public static String getHomeBaseUrl() { return getProperty("home.base.url"); }
 
+    public static String getHousingPagePath() { return getProperty("housing.page.path"); }
+
     @SneakyThrows
     private static String getProperty(String property) {
         prop.load(new FileInputStream(CONFIG_FILE_PATH));

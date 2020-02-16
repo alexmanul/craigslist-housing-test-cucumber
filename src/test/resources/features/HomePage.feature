@@ -1,5 +1,5 @@
 @all @homePage
-Feature: Validate housing page
+Feature: Home page
 
   @homePageHousing
   Scenario: Check that housing page could be opened from home page

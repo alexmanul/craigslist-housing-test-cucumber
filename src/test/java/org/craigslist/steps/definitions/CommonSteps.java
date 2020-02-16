@@ -9,7 +9,7 @@ import static org.craigslist.configuration.PropertiesConfiguration.getHomeBaseUr
 public class CommonSteps {
 
     @Then("url should contain following path: {string}")
-    public void checkUrlPath(String expectedPath) {
+    public void checkUrl(String expectedPath) {
         assertThat(url()).isEqualTo(getHomeBaseUrl() + expectedPath);
     }
 }

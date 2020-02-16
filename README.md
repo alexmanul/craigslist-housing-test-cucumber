@@ -3,7 +3,7 @@
 ## Technologies & tools
 Java, Cucumber, Allure, Junit5, Maven
 
-## Hot to start
+## How to start
 todo 
 
 ## Parameters

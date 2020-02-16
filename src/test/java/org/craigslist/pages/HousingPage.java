@@ -62,11 +62,11 @@ public class HousingPage {
         Selenide.open(getHomeBaseUrl() + getHousingPagePath());
     }
 
-    public void clickDropDown() {
+    public void clickPriceDropDown() {
         FILTER_DROP_DOWN_MENU.shouldBe(visible).click();
     }
 
-    public void validateDefaultSearchOptions(final List<String> expectedOption) {
+    public void validateDefaultPriceFilterOptions(final List<String> expectedOption) {
         List<String> actualOptions = FILTER_DROP_DOWN_MENU_EXPANDED
                 .stream()
                 .map(SelenideElement::getText)
@@ -75,7 +75,7 @@ public class HousingPage {
         assertThat(actualOptions).isEqualTo(expectedOption);
     }
 
-    public void pickFilter(String filterOption) {
+    public void pickPriceSorting(String filterOption) {
         filterMap().get(filterOption).shouldBe(visible).click();
     }
 }

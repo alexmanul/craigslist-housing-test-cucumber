@@ -6,7 +6,9 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.extern.java.Log;
 import org.assertj.core.api.SoftAssertions;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Condition.*;
@@ -26,6 +28,19 @@ public class HousingPage {
 
     private final SelenideElement FILTER_DROP_DOWN_MENU = $(".search-sort > .dropdown");
     private final ElementsCollection FILTER_DROP_DOWN_MENU_EXPANDED = $$(".dropdown-list.dropdown-show > .dropdown-item.mode");
+
+    private SelenideElement FILTER_NEWEST = $("[data-selection=\"date\"]");
+    private SelenideElement FILTER_PRICE_UP = $("[data-selection=\"priceasc\"]");
+    private SelenideElement FILTER_PRICE_DOWN = $("[data-selection=\"pricedsc\"]");
+
+    private Map<String, SelenideElement> filterMap() {
+        Map<String, SelenideElement> map = new HashMap<>();
+        map.put("uusin", FILTER_NEWEST);
+        map.put("hinta ↑", FILTER_PRICE_UP);
+        map.put("hinta ↓", FILTER_PRICE_DOWN);
+
+        return map;
+    }
 
     public void isPageLoaded() {
         final SoftAssertions softly = new SoftAssertions();
@@ -58,5 +73,9 @@ public class HousingPage {
                 .collect(Collectors.toList());
 
         assertThat(actualOptions).isEqualTo(expectedOption);
+    }
+
+    public void pickFilter(String filterOption) {
+        filterMap().get(filterOption).shouldBe(visible).click();
     }
 }

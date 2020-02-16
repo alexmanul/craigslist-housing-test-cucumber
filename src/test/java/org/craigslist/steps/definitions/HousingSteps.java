@@ -20,7 +20,7 @@ public class HousingSteps {
         housingPage.open();
     }
 
-    @When("user click search options drop down menu")
+    @When("user click drop down menu with sorting options")
     public void clickDropDown() {
         housingPage.clickDropDown();
     }
@@ -28,5 +28,11 @@ public class HousingSteps {
     @Then("by default should be following options:")
     public void defaultSortingOptions(List<String> expectedOptions) {
        housingPage.validateDefaultSearchOptions(expectedOptions);
+    }
+
+    @When("user pick sorting filter for search: {string}")
+    public void clickFilter(String filterOption) {
+        housingPage.clickDropDown();
+        housingPage.pickFilter(filterOption);
     }
 }

@@ -28,10 +28,11 @@ public class HousingPage {
 
     private final SelenideElement FILTER_DROP_DOWN_MENU = $(".search-sort > .dropdown");
     private final ElementsCollection FILTER_DROP_DOWN_MENU_EXPANDED = $$(".dropdown-list.dropdown-show > .dropdown-item.mode");
+    private final ElementsCollection HOUSING_PRICES = $$(".result-meta > .result-price");
 
-    private SelenideElement FILTER_NEWEST = $("[data-selection=\"date\"]");
-    private SelenideElement FILTER_PRICE_UP = $("[data-selection=\"priceasc\"]");
-    private SelenideElement FILTER_PRICE_DOWN = $("[data-selection=\"pricedsc\"]");
+    private final SelenideElement FILTER_NEWEST = $("[data-selection=\"date\"]");
+    private final SelenideElement FILTER_PRICE_UP = $("[data-selection=\"priceasc\"]");
+    private final SelenideElement FILTER_PRICE_DOWN = $("[data-selection=\"pricedsc\"]");
 
     private Map<String, SelenideElement> filterMap() {
         Map<String, SelenideElement> map = new HashMap<>();
@@ -77,5 +78,12 @@ public class HousingPage {
 
     public void pickPriceSorting(String filterOption) {
         filterMap().get(filterOption).shouldBe(visible).click();
+    }
+
+    public List<String> getAllPricesTitles() {
+        return HOUSING_PRICES
+                .stream()
+                .map(SelenideElement::getText)
+                .collect(Collectors.toList());
     }
 }

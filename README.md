@@ -1,7 +1,7 @@
 # craigslist-housing-test-cucumber
 
 ## Technologies & tools
-Java, Cucumber, Allure, Junit5, Maven
+Java, Cucumber, Allure, Junit5, Maven, Lombok
 
 ## How to start
 todo 

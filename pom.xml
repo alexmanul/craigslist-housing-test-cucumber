@@ -18,9 +18,18 @@
         <google.guava.version>28.2-jre</google.guava.version>
         <assertJ.version>3.15.0</assertJ.version>
         <log4f.version>2.11.2</log4f.version>
+        <java.money.version>1.3</java.money.version>
     </properties>
 
     <dependencies>
+        <!--Currency converter -->
+        <dependency>
+            <groupId>org.javamoney</groupId>
+            <artifactId>moneta</artifactId>
+            <version>${java.money.version}</version>
+            <type>pom</type>
+        </dependency>
+        <!--Assertions -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>

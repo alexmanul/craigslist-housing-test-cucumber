@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
 
+//todo do i need this?
 public class CurrencyConverterHelper {
 
     public BigDecimal convertCurrencyInCents(final BigDecimal amount, final String from, final String to) {

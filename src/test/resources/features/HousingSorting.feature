@@ -1,9 +1,9 @@
-#info
-#tests are written with native page language (Finland)
-  #translations:
-    #uusin   -> newest
-    #hinta ↑ -> price up
-    #hinta ↓ -> price down
+# info
+# tests are written with native page language (Finland)
+  # translations:
+    # uusin   -> newest
+    # hinta ↑ -> price up
+    # hinta ↓ -> price down
 
 @all @housingPage @housingSorting
 Feature: Validate housing page price sorting filter
@@ -30,7 +30,9 @@ Feature: Validate housing page price sorting filter
       | hinta ↑ | /search/hhh?sort=priceasc& |
       | hinta ↓ | /search/hhh?sort=pricedsc& |
 
-    @housingPriceUpSorting
-    Scenario: Validate price sorting with filter: price up
+
+    @housingPriceUpSortingFinland
+    Scenario: Validate prices for Finland with sorting filter: price up
       When user pick price sorting filter: "hinta ↑"
-      Then validate items by price up
+      And pick only houses for "Finland"
+      Then validate sorting price up

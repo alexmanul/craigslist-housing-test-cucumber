@@ -25,7 +25,6 @@ Feature: Validate housing page price sorting filter
   @housingSortingAs
   Scenario: Validate sorting options after search
     When after "random" search
-
     And click drop down menu with price sorting options
     Then should be available following sorting options:
       | tulossa    |

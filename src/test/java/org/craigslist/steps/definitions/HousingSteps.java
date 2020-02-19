@@ -52,12 +52,13 @@ public class HousingSteps {
     @Then("validate {string} sorting")
     public void validateSorting(final String sorting) {
         final List<String> pricesWithCurrency = housingPage.getAllPrices();
-        final List<BigInteger> allPrices = pricesHelper.extractPrices(pricesWithCurrency);
+        final List<String> housesTitles = housingPage.getAllPricesTitles();
+        final List<BigInteger> allPrices = pricesHelper.extractIntegers(pricesWithCurrency);
 
         if (sorting.equals("hinta ↑")) {
-            assertThat(allPrices).isSortedAccordingTo(Comparator.naturalOrder());
+            pricesHelper.assertHouseSortingByPriceUp(allPrices, housesTitles, pricesWithCurrency);
         } else if (sorting.equals("hinta ↓")) {
-            assertThat(allPrices).isSortedAccordingTo(Comparator.reverseOrder());
+            pricesHelper.assertHouseSortingByPriceDown(allPrices, housesTitles, pricesWithCurrency);
         } else {
             throw new InvalidParameterException("available sorting options are: 'hinta ↑' and 'hinta ↓'");
         }

@@ -28,7 +28,7 @@ public class HousingPage {
 
     private final SelenideElement FILTER_DROP_DOWN_MENU = $(".search-sort > .dropdown");
     private final ElementsCollection FILTER_DROP_DOWN_MENU_EXPANDED = $$(".dropdown-list.dropdown-show > .dropdown-item.mode");
-    private final ElementsCollection HOUSING_TITLES = $$(".result-info");
+    private final ElementsCollection HOUSING_TITLES = $$(".result-title.hdrlnk");
     private final ElementsCollection HOUSING_PRICES = $$(".result-info .result-price");
 
     private final SelenideElement FILTER_NEWEST = $("[data-selection=\"date\"]");

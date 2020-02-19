@@ -8,10 +8,10 @@ import org.craigslist.helpers.PricesHelper;
 import org.craigslist.pages.HousingPage;
 
 import java.math.BigInteger;
+import java.security.InvalidParameterException;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HousingSteps {
@@ -34,31 +34,37 @@ public class HousingSteps {
     }
 
     @Then("by default should be following options:")
-    public void defaultSortingOptions(List<String> expectedOptions) {
-        //todo make assertions here
-        housingPage.validateDefaultPriceFilterOptions(expectedOptions);
+    public void defaultSortingOptions(final List<String> expectedOptions) {
+        final List<String> actualOptions = housingPage.getActualOptions();
+        assertThat(actualOptions)
+                .withFailMessage("Sorting options mismatch\n" +
+                        "actual result:   " + actualOptions +
+                        "expected result: " + expectedOptions)
+                .isEqualTo(expectedOptions);
     }
 
     @When("user pick price sorting filter: {string}")
-    public void pickPriceSorting(String filterOption) {
+    public void pickPriceSorting(final String filterOption) {
         housingPage.clickPriceDropDown();
         housingPage.pickPriceSorting(filterOption);
     }
 
-    @And("pick only house(s) for {string}")
-    public void pickOnlyHouseFor(String country) {
-        //todo
-        open("https://helsinki.craigslist.org/search/hhh?sort=priceasc&availabilityMode=0&searchNearby=1&lang=en&cc=gb");
+    @Then("validate {string} sorting")
+    public void validateSorting(final String sorting) {
+        final List<String> pricesWithCurrency = housingPage.getAllPrices();
+        final List<BigInteger> allPrices = pricesHelper.extractPrices(pricesWithCurrency);
+
+        if (sorting.equals("hinta ↑")) {
+            assertThat(allPrices).isSortedAccordingTo(Comparator.naturalOrder());
+        } else if (sorting.equals("hinta ↓")) {
+            assertThat(allPrices).isSortedAccordingTo(Comparator.reverseOrder());
+        } else {
+            throw new InvalidParameterException("available sorting options are: 'hinta ↑' and 'hinta ↓'");
+        }
     }
 
-    @Then("validate sorting price up")
-    public void validateSortingPriceUp() {
-        final List<String> allPricesTitles = housingPage.getAllPricesTitles();
-        System.out.println(allPricesTitles);
-
-        List<BigInteger> allPrices = pricesHelper.extractPrices(allPricesTitles);
-        System.out.println(allPrices);
-
-        assertThat(allPrices).isSortedAccordingTo(Comparator.naturalOrder());
+    @And("set nearby areas")
+    public void setNearbyAreas() {
+        housingPage.setNearbyAreas();
     }
 }

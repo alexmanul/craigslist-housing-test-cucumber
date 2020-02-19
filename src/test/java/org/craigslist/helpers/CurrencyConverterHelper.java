@@ -8,9 +8,10 @@ import javax.money.format.MonetaryFormats;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-//todo do i need this?
 public class CurrencyConverterHelper {
 
     public BigDecimal convertCurrencyInCents(final BigDecimal amount, final String from, final String to) {
@@ -29,21 +30,11 @@ public class CurrencyConverterHelper {
                 .setScale(0, RoundingMode.HALF_DOWN);
     }
 
-    public String getAlphabeticCode(String currency) {
-        String mappedCurrency;
-        switch (currency) {
-            case "руб":
-                mappedCurrency = "RUB";
-                break;
-            case "SEK":
-                mappedCurrency = "SEK";
-                break;
-            case "€":
-                mappedCurrency = "EUR";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected currency: " + currency);
-        }
-        return mappedCurrency;
+    public Map<String, String> getAlphabeticCode(String currency) {
+        Map<String, String> code = new HashMap<>();
+        code.put("руб", "RUB");
+        code.put("SEK", "SEK");
+        code.put("€", "EUR");
+        return code;
     }
 }

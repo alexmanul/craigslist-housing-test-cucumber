@@ -11,7 +11,7 @@ Feature: Validate housing page price sorting filter
   Background:
     Given opened housing page
 
-#This test will be failing, because by default "upcoming" option should not be present
+    # This test will be failing, because by default "upcoming" option should not be present
   @housingDefaultSorting
   Scenario: Validate price sorting options before search
     When user click drop down menu with price sorting options
@@ -22,17 +22,21 @@ Feature: Validate housing page price sorting filter
 
   @housingSearchNavigation
   Scenario Outline: Validate ulr for default filter price sorting option: "<option>"
-    When user pick price sorting filter: "<option>"
+    When user pick price sorting filter: "<sorting_option>"
     Then check url with path: "<path>"
     Examples:
-      | option  | path                       |
-      | uusin   | /search/hhh?sort=date&     |
-      | hinta ↑ | /search/hhh?sort=priceasc& |
-      | hinta ↓ | /search/hhh?sort=pricedsc& |
+      | sorting_option | path                       |
+      | uusin          | /search/hhh?sort=date&     |
+      | hinta ↑        | /search/hhh?sort=priceasc& |
+      | hinta ↓        | /search/hhh?sort=pricedsc& |
 
-
-    @housingPriceUpSortingFinland
-    Scenario: Validate prices for Finland with sorting filter: price up
-      When user pick price sorting filter: "hinta ↑"
-      And pick only houses for "Finland"
-      Then validate sorting price up
+    # Note: filtering for nearby areas working only for Finland
+  @housingPriceSortingNearBy
+  Scenario Outline: Validate prices for nearby areas with sorting: <sorting_option>
+    When user pick price sorting filter: "<sorting_option>"
+    And set nearby areas
+    Then validate "<sorting_option>" sorting
+    Examples:
+      | sorting_option |
+      | hinta ↑        |
+      | hinta ↓        |

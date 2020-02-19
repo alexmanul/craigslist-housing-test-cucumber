@@ -16,7 +16,7 @@ public class PricesHelper {
     }
 
     private BigInteger stringToBigInt(final String textInput) {
-        final String digits = CharMatcher.digit().retainFrom(textInput);
+        final String digits = CharMatcher.inRange('0', '9').retainFrom(textInput);
         return BigInteger.valueOf(Integer.parseInt(digits));
     }
 

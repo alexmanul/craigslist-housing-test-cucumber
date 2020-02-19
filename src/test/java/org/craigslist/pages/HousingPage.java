@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.java.Log;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.assertj.core.api.SoftAssertions;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import static org.craigslist.util.ElementWaiter.isVisible;
 @Log
 public class HousingPage {
     private final SelenideElement NEARBY_AREAS_CHECKBOX = $(".searchNearby");
-    private final SelenideElement SEARCH_FIELD = $(".flatinput.ui-autocomplete-input");
+    private final SelenideElement SEARCH_FIELD = $("#query");
     private final SelenideElement SORTABLE_RESULTS = $("#sortable-results");
     private final SelenideElement SEARCH_OPTION_CONTAINER = $(".search-options-container");
 
@@ -75,7 +76,7 @@ public class HousingPage {
                 .collect(Collectors.toList());
     }
 
-    public void pickPriceSorting(String filterOption) {
+    public void pickPriceSorting(final String filterOption) {
         filterMap().get(filterOption).shouldBe(visible).click();
     }
 
@@ -95,5 +96,17 @@ public class HousingPage {
 
     public void setNearbyAreas() {
         NEARBY_AREAS_CHECKBOX.shouldBe(visible).click();
+    }
+
+    public void searchFor(String searchText) {
+        SEARCH_FIELD.shouldBe(visible);
+
+        if (searchText.equals("random")) {
+            var randomText = "THIS IS SPARTAAA " + RandomStringUtils.random(10, true, false);
+            SEARCH_FIELD.sendKeys(randomText);
+        } else {
+            SEARCH_FIELD.sendKeys(searchText);
+        }
+        SEARCH_FIELD.submit();
     }
 }

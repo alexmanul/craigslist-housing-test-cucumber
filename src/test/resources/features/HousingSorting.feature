@@ -1,9 +1,11 @@
 # info
 # tests are written with native page language (Finland)
   # translations:
-    # uusin   -> newest
-    # hinta ↑ -> price up
-    # hinta ↓ -> price down
+    # tulossa    -> upcoming
+    # uusin      -> newest
+    # asiaankuul -> relevant
+    # hinta ↑    -> price up
+    # hinta ↓    -> price down
 
 @all @housingPage @housingSorting
 Feature: Validate housing page price sorting filter
@@ -12,13 +14,25 @@ Feature: Validate housing page price sorting filter
     Given opened housing page
 
     # This test will be failing, because by default "upcoming" option should not be present
-  @housingDefaultSorting
-  Scenario: Validate price sorting options before search
-    When user click drop down menu with price sorting options
-    Then by default should be following options:
+  @housingSortingBs
+  Scenario: Validate sorting options before search
+    When click drop down menu with price sorting options
+    Then should be available following sorting options:
       | uusin   |
       | hinta ↑ |
       | hinta ↓ |
+
+  @housingSortingAs
+  Scenario: Validate sorting options after search
+    When after "random" search
+
+    And click drop down menu with price sorting options
+    Then should be available following sorting options:
+      | tulossa    |
+      | uusin      |
+      | asiaankuul |
+      | hinta ↑    |
+      | hinta ↓    |
 
   @housingSearchNavigation
   Scenario Outline: Validate ulr for default filter price sorting option: "<option>"

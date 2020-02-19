@@ -13,3 +13,6 @@ todo
 
 #### Run tests with chrome mobile emulation
 -Dchromeoptions.mobileEmulation="deviceName=Nexus 5"
+
+#### Run tests with headless mode
+-Dselenide.headless=true

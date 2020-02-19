@@ -28,12 +28,12 @@ public class HousingSteps {
         housingPage.open();
     }
 
-    @When("user click drop down menu with price sorting options")
+    @When("click drop down menu with price sorting options")
     public void clickDropDown() {
         housingPage.clickPriceDropDown();
     }
 
-    @Then("by default should be following options:")
+    @Then("should be available following sorting options:")
     public void defaultSortingOptions(final List<String> expectedOptions) {
         final List<String> actualOptions = housingPage.getActualOptions();
         assertThat(actualOptions)
@@ -67,5 +67,10 @@ public class HousingSteps {
     @And("set nearby areas")
     public void setNearbyAreas() {
         housingPage.setNearbyAreas();
+    }
+
+    @When("after {string} search")
+    public void afterSearch(String searchText) {
+        housingPage.searchFor(searchText);
     }
 }

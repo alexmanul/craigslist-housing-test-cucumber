@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         stepNotifications = true,
         features = "classpath:features",
         glue = "org.craigslist.steps.definitions",
-        tags = "@housingPriceSortingNearBy"
+        tags = "@housingSortingAs"
 )
 
 public class DefaultTestRunner extends AbstractTestRunner {

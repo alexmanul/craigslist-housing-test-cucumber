@@ -9,7 +9,6 @@ import org.craigslist.pages.HousingPage;
 
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,9 +36,9 @@ public class HousingSteps {
     public void defaultSortingOptions(final List<String> expectedOptions) {
         final List<String> actualOptions = housingPage.getActualOptions();
         assertThat(actualOptions)
-                .withFailMessage("Sorting options mismatch\n" +
-                        "actual result:   " + actualOptions +
-                        "expected result: " + expectedOptions)
+                .withFailMessage("Sorting options mismatch" +
+                        "\n actual result:   " + actualOptions +
+                        "\n expected result: " + expectedOptions)
                 .isEqualTo(expectedOptions);
     }
 

@@ -1,18 +1,29 @@
 # craigslist-housing-test-cucumber
 
 ## Technologies & tools
-Java, Cucumber, Allure, Junit5, Maven, Lombok
+Java 11, Cucumber 4, Allure 2, Junit 5, Maven, Lombok
 
-## How to start
-todo 
+## Run options
+
+#### Run all tests                
+mvn test 
+
+#### Run tests with specific tag     
+mvn test -DCucumber.options="--tags @all"
+
+#### Run tests and open allure report 
+mvn clean test; allure serve target/allure-results/
 
 ## Parameters
 
-#### Run tests in firefox browser
+#### Firefox browser
 -Dselenide.browser=org.openqa.selenium.firefox.FirefoxDriver
 
-#### Run tests with chrome mobile emulation
+#### Chrome mobile emulation
 -Dchromeoptions.mobileEmulation="deviceName=Nexus 5"
 
-#### Run tests with headless mode
--Dselenide.headless=true
+#### Headless mode
+-Dselenide.headless=truemv
+
+#### Rerun failing tests
+-Dsurefire.rerunFailingTestsCount=2

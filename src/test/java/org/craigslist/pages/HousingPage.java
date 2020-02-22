@@ -20,7 +20,6 @@ import static org.craigslist.configuration.PropertiesConfiguration.getHomeBaseUr
 import static org.craigslist.configuration.PropertiesConfiguration.getHousingPagePath;
 import static org.craigslist.util.ElementWaiter.isVisible;
 
-@Log
 public class HousingPage {
     private final SelenideElement NEARBY_AREAS_CHECKBOX = $(".searchNearby");
     private final SelenideElement SEARCH_FIELD = $("#query");
@@ -61,7 +60,6 @@ public class HousingPage {
     }
 
     public void open() {
-        log.info("Opening housing page: " + getHomeBaseUrl() + getHousingPagePath());
         Selenide.open(getHomeBaseUrl() + getHousingPagePath());
     }
 

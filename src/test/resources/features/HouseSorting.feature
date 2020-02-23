@@ -33,7 +33,7 @@ Feature: Validate housing page price sorting filter
       | hinta ↓    |
 
   @housingSearchNavigation
-  Scenario Outline: Validate ulr for default filter price sorting option: <option>
+  Scenario Outline: Validate ulr for default filter price sorting option: <sorting_option>
     When user pick price sorting filter: "<sorting_option>"
     Then check url with path: "<path>"
     Examples:

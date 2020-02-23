@@ -23,7 +23,7 @@ mvn clean test -Dcucumber.options="--tags @all"; allure serve target/allure-resu
 -Dchromeoptions.mobileEmulation="deviceName=Nexus 5"
 
 #### Headless mode
--Dselenide.headless=truemv
+-Dselenide.headless=true
 
 #### Rerun failing tests
 -Dsurefire.rerunFailingTestsCount=2

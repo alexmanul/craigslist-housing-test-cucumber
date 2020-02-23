@@ -9,7 +9,7 @@ Java 11, Cucumber 4, Allure 2, Junit 5, Maven, Lombok
 mvn test 
 
 #### Run tests with specific tag     
-mvn test -DCucumber.options="--tags @all"
+mvn test -Dcucumber.options="--tags @all"
 
 #### Run tests and open allure report 
 mvn clean test; allure serve target/allure-results/

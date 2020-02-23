@@ -12,7 +12,7 @@ mvn test
 mvn test -Dcucumber.options="--tags @all"
 
 #### Run tests and open allure report 
-mvn clean test; allure serve target/allure-results/
+mvn clean test -Dcucumber.options="--tags @all"; allure serve target/allure-results/
 
 ## Parameters
 

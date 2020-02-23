@@ -14,4 +14,5 @@ import org.junit.runner.RunWith;
         tags = "@all"
 )
 public class DefaultTestRunner extends AbstractTestRunner {
+
 }
